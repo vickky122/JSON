@@ -9,7 +9,7 @@ import (
 
 type ToDo struct {
 	UserID    int    `json:"userId"`
-	ID        int    `json:"id"`
+	ID        int    `json:"-"`
 	Title     string `json:"title"`
 	Completed bool   `json:"completed"`
 }
@@ -28,7 +28,11 @@ func main() {
 		todoItem := ToDo{}
 
 		decoder := json.NewDecoder(response.Body)
-		decoder.Decode(&todoItem)
+		decoder.DisallowUnknownFields()
+
+		if err := decoder.Decode(&todoItem); err != nil {
+			log.Fatal("Decode error: ", err)
+		}
 
 		fmt.Printf("Data from Api: %+v\n", todoItem)
 	}
