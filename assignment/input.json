@@ -1,0 +1,15 @@
+{
+  "output": "students.csv",
+  "students": [
+    {
+      "name": "Vikrant",
+      "age": 22,
+      "marks": 85
+    },
+    {
+      "name": "Amit",
+      "age": 23,
+      "marks": 90
+    }
+  ]
+}
