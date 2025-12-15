@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime/pprof"
 	"strconv"
 )
 
@@ -67,4 +68,14 @@ func main() {
 	}
 
 	fmt.Println("CSV written to:", cfg.Output)
+
+	// pprof
+	f, err := os.Create("mem.prof")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	pprof.WriteHeapProfile(f)
+
 }
